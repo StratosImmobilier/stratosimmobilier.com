@@ -6,89 +6,137 @@
     <title>Stratos Immobilier</title>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-
         body {
             margin: 0;
-            font-family: 'Inter', sans-serif;
-            background: #0D0D0D;
-            color: #EAEAEA;
-            line-height: 1.7;
-            font-size: 18px;
+            background: #000;
+            color: #e6e6e6;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
         }
 
-        header {
-            padding: 30px;
+        /* ---- HEADER ---- */
+        .hero {
+            position: relative;
+            height: 85vh;
+            background: url("hero.jpg") center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            background: #111;
-            font-size: 34px;
-            font-weight: 700;
-            color: white;
-            border-bottom: 1px solid #333;
         }
 
-        h1, h2, h3 {
-            color: #FFFFFF;
-            font-weight: 600;
-            margin-bottom: 15px;
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+        }
+
+        .hero h1 {
+            position: relative;
+            font-size: 4rem;
+            color: white;
+            text-shadow: 0 0 25px black;
+            z-index: 10;
+            letter-spacing: 3px;
+            margin: 0;
+        }
+
+        /* ---- MENU ---- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 30px;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            color: white;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            z-index: 200;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 1.1rem;
+        }
+        nav a:hover {
+            color: #c49a3a;
+        }
+
+        /* ---- SECTION ---- */
+        .section {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2.4rem;
+            margin-bottom: 20px;
+            color: #fff;
         }
 
         p {
-            color: #D6D6D6;
-            font-size: 18px;
-            line-height: 1.7;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #ccc;
         }
 
-        a {
-            color: #B8860B;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        a:hover {
-            color: #D4A017;
-        }
-
-        .container {
-            padding: 40px;
-            max-width: 1000px;
-            margin: auto;
-        }
-
-        .listing-card {
-            background: #121212;
-            padding: 20px;
-            border-radius: 10px;
-            border: 1px solid #333;
-            margin-bottom: 25px;
-            transition: 0.2s ease;
-        }
-
-        .listing-card:hover {
-            border-color: #B8860B;
-        }
-
-        .listing-card h3 {
-            margin-top: 0;
+        .btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 14px 28px;
+            background: #c49a3a;
             color: white;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: 0.2s;
         }
+        .btn:hover {
+            background: #a8822f;
+        }
+
     </style>
 </head>
 
 <body>
 
-<header>STRATOS IMMOBILIER</header>
+    <!-- NAV -->
+    <nav>
+        <div>STRATOS IMMOBILIER</div>
+        <div>
+            <a href="#about">À propos</a>
+            <a href="appartement1.html">Appartements</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
 
-<div class="container">
-    <h2>Nos logements disponibles</h2>
-
-    <!-- Appartement 1 -->
-    <div class="listing-card">
-        <h3>Appartement 4½ — Montréal-Nord — 1650$</h3>
-        <p>Entièrement rénové — disponible dès maintenant.</p>
-        <a href="appartement1.html">Voir les photos →</a>
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-overlay"></div>
+        <h1>Élever Votre Expérience Locative</h1>
     </div>
 
-</div>
+    <!-- ABOUT -->
+    <div class="section" id="about">
+        <h2>À propos</h2>
+        <p>
+            Stratos Immobilier offre des logements haut de gamme rénovés à Montréal.  
+            Nous visons un standard élevé : qualité, propreté, modernité et tranquillité.
+        </p>
+        <a class="btn" href="appartement1.html">Voir un appartement rénové</a>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="section" id="contact">
+        <h2>Contact</h2>
+        <p>Pour une visite, une question ou une disponibilité, écrivez-nous :</p>
+        <p><b>info@stratosimmobilier.com</b></p>
+    </div>
 
 </body>
 </html>
