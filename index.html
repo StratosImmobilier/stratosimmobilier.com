@@ -8,1246 +8,322 @@
     <style>
         :root {
             --primary: #ffffff;
-            --primary-light: #e5e5e5;
-            --accent: #ffffff;
-            --accent-soft: rgba(255,255,255,0.15);
             --bg: #000000;
-            --bg-soft: #111111;
             --text-main: #ffffff;
             --text-muted: #b5b5b5;
             --card-bg: #0a0a0a;
             --border-subtle: #222222;
-            --radius-xl: 18px;
-            --radius-2xl: 24px;
-            --shadow-soft: 0 18px 45px rgba(0,0,0,0.7);
-            --shadow-card: 0 16px 40px rgba(0,0,0,0.65);
-            --transition-fast: 0.18s ease-out;
-            --transition-med: 0.25s ease-out;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
             background: var(--bg);
             color: var(--text-main);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
             line-height: 1.6;
         }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
 
-        img {
-            max-width: 100%;
-            display: block;
-        }
+        .page { min-height: 100vh; }
 
-        /* Layout */
-        .page {
-            min-height: 100vh;
-            background: #000;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1180px;
-            margin: 0 auto;
-            padding: 0 1.4rem;
-        }
-
-        /* Header */
+        /* HEADER */
         .site-header {
             position: fixed;
-            top: 0;
-            z-index: 50;
+            top: 0; left: 0;
             width: 100%;
-            backdrop-filter: blur(18px);
             background: rgba(0,0,0,0.9);
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid #222;
+            z-index: 50;
         }
 
         .header-inner {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 0.9rem 0;
-        }
-
-        .brand {
-            display: flex;
             align-items: center;
-            gap: 0.6rem;
+            padding: 1rem 0;
+            max-width: 1180px;
+            margin: auto;
         }
 
+        .brand { display: flex; gap: 0.6rem; align-items: center; }
         .brand-mark {
-            width: 36px;
-            height: 36px;
-            border-radius: 999px;
-            background: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 0 1px rgba(248,250,252,0.08), 0 12px 35px rgba(0,0,0,0.9);
-        }
-
-        .brand-initial {
-            font-size: 0.95rem;
-            letter-spacing: 0.06em;
-            color: #000000;
+            background: white;
+            color: black;
             font-weight: 800;
-        }
-
-        .brand-text {
+            width: 36px; height: 36px;
+            border-radius: 999px;
             display: flex;
-            flex-direction: column;
-            gap: 0.05rem;
+            justify-content: center;
+            align-items: center;
         }
-
         .brand-name {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             font-weight: 700;
-            letter-spacing: 0.16em;
             text-transform: uppercase;
         }
-
         .brand-tagline {
             font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 0.18em;
             color: var(--text-muted);
         }
 
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 1.8rem;
-        }
+        nav { display: flex; gap: 2rem; align-items: center; }
 
         .nav-links {
             display: flex;
-            gap: 1.8rem;
-            font-size: 0.78rem;
+            gap: 1.4rem;
             text-transform: uppercase;
-            letter-spacing: 0.16em;
-            color: var(--text-muted);
-        }
-
-        .nav-link {
-            position: relative;
-            padding-bottom: 0.15rem;
-            color: #ffffff;
-            opacity: 0.9;
-            transition: opacity var(--transition-fast);
-        }
-
-        .nav-link::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 0;
-            height: 1px;
-            background: #ffffff;
-            transition: width var(--transition-fast);
-        }
-
-        .nav-link:hover {
-            opacity: 1;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .nav-cta {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .nav-phone {
             font-size: 0.78rem;
-            color: var(--text-muted);
-            white-space: nowrap;
         }
 
-        .nav-phone strong {
-            color: var(--text-main);
-        }
-
-        .btn {
-            border-radius: 999px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            border: 1px solid transparent;
-            padding: 0.55rem 1.1rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.4rem;
-            cursor: pointer;
-            transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
-            background: transparent;
-            color: var(--text-main);
-        }
+        .nav-link { opacity: 0.8; }
+        .nav-link:hover { opacity: 1; }
 
         .btn-whatsapp {
             background: #25D366;
-            color: #000;
-            box-shadow: 0 14px 24px rgba(0,0,0,0.5);
-            padding-inline: 1.2rem;
-        }
-
-        .btn-whatsapp:hover {
-            transform: translateY(-1px) scale(1.01);
-            box-shadow: 0 18px 32px rgba(0,0,0,0.7);
-        }
-
-        .btn-outline {
-            border-color: rgba(255,255,255,0.24);
-            background: rgba(0,0,0,0.65);
-        }
-
-        .btn-outline:hover {
-            border-color: rgba(255,255,255,0.6);
-            background: rgba(0,0,0,0.9);
-            box-shadow: 0 12px 32px rgba(0,0,0,0.8);
-            transform: translateY(-1px);
-        }
-
-        .btn-pill {
+            padding: 0.5rem 1rem;
             border-radius: 999px;
+            font-weight: 600;
+            color: black;
         }
 
-        .btn-sm {
-            padding: 0.45rem 0.9rem;
-            font-size: 0.76rem;
-        }
-
-        .whatsapp-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 999px;
-            background: #000000;
-        }
-
-        /* Hero full-width */
-
+        /* HERO FULL WIDTH */
         .hero {
-            position: relative;
-            padding: 0;
-            margin-top: 72px;
+            margin-top: 80px;
             width: 100%;
-            height: 80vh;
+            height: 78vh;
             background: url("hero.jpg") center center / cover no-repeat;
             display: flex;
             align-items: center;
+            position: relative;
         }
 
         .hero::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                to bottom,
-                rgba(0,0,0,0.45),
-                rgba(0,0,0,0.9)
-            );
+            content:"";
+            position:absolute;
+            inset:0;
+            background:rgba(0,0,0,0.5);
         }
 
-        .hero-grid {
-            display: block;
-        }
-
-        .hero-copy {
+        .hero-content {
             position: relative;
             z-index: 2;
             max-width: 540px;
-        }
-
-        .hero-kicker {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.55rem;
-            padding: 0.12rem 0.45rem;
-            border-radius: 999px;
-            border: 1px solid rgba(255,255,255,0.3);
-            background: rgba(0,0,0,0.7);
-            margin-bottom: 1rem;
-        }
-
-        .dot-gold {
-            width: 6px;
-            height: 6px;
-            border-radius: 999px;
-            background: #ffffff;
-        }
-
-        .hero-kicker-text {
-            font-size: 0.72rem;
-            text-transform: uppercase;
-            letter-spacing: 0.18em;
-            color: var(--text-muted);
+            margin-left: 2rem;
         }
 
         .hero-title {
-            font-size: clamp(2.3rem, 3.4vw, 3rem);
-            letter-spacing: 0.08em;
+            font-size: 3rem;
+            font-weight: 700;
             text-transform: uppercase;
-            line-height: 1.15;
-            margin-bottom: 0.8rem;
+            line-height: 1.1;
         }
 
-        .hero-title span {
-            display: inline-block;
-        }
-
-        .hero-title-accent {
-            color: #ffffff;
-        }
-
-        .hero-subtitle {
+        .hero-sub {
+            color: var(--text-muted);
+            margin-top: 1rem;
             font-size: 1.05rem;
-            max-width: 32rem;
-            color: var(--text-muted);
-            margin-bottom: 1.4rem;
         }
 
-        .hero-subtitle strong {
-            color: #ffffff;
-            font-weight: 500;
+        .hero-actions { margin-top: 2rem; display:flex; gap:1rem; }
+
+        .btn-outline {
+            border:1px solid #fff;
+            padding:0.6rem 1.2rem;
+            border-radius:999px;
         }
 
-        .hero-badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            margin-bottom: 1.5rem;
+        /* TABS WRAPPER */
+        .tabs-wrapper {
+            max-width:1180px;
+            margin:3rem auto 0 auto;
+            padding:0 1rem;
         }
 
-        .badge {
-            padding: 0.28rem 0.75rem;
-            border-radius: 999px;
-            border: 1px solid rgba(255,255,255,0.24);
-            background: rgba(0,0,0,0.6);
-            font-size: 0.74rem;
-            color: var(--text-muted);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.32rem;
+        .tabs {
+            display:flex;
+            gap:1rem;
+            border-bottom:1px solid #222;
+            padding-bottom:1rem;
         }
 
-        .badge-dot {
-            width: 5px;
-            height: 5px;
-            border-radius: 999px;
-            background: #ffffff;
+        .tab {
+            cursor:pointer;
+            font-size:0.95rem;
+            font-weight:600;
+            text-transform:uppercase;
+            opacity:0.6;
         }
 
-        .badge-soft {
-            background: rgba(255,255,255,0.06);
-            border-color: rgba(255,255,255,0.5);
-            color: #ffffff;
+        .tab.active {
+            opacity:1;
+            border-bottom:2px solid white;
+            padding-bottom:0.5rem;
         }
 
-        .hero-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
+        .tab-content { display:none; margin-top:2rem; }
+        .tab-content.active { display:block; }
 
-        .hero-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.4rem;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-top: 0.4rem;
-        }
-
-        .hero-meta-block {
-            display: flex;
-            flex-direction: column;
-            gap: 0.1rem;
-        }
-
-        .hero-meta-label {
-            text-transform: uppercase;
-            letter-spacing: 0.18em;
-            font-size: 0.68rem;
-            color: rgba(200,200,200,0.9);
-        }
-
-        .hero-meta-value {
-            color: #e5e5e5;
-        }
-
-        .hero-media {
-            display: none; /* on ne garde que la bannière full image */
-        }
-
-        /* Filters / sections */
-
-        .section {
-            padding: 2.2rem 0 0.2rem;
-        }
-
-        .section-header {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-            gap: 1.5rem;
-        }
-
-        .section-title-block {
-            display: flex;
-            flex-direction: column;
-            gap: 0.15rem;
-        }
-
-        .section-kicker {
-            font-size: 0.72rem;
-            text-transform: uppercase;
-            letter-spacing: 0.18em;
-            color: var(--text-muted);
-        }
-
-        .section-title {
-            font-size: 1rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-        }
-
-        .section-subtitle {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .filters {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .filter-chip {
-            border-radius: 999px;
-            border: 1px solid rgba(255,255,255,0.3);
-            background: rgba(0,0,0,0.9);
-            padding: 0.4rem 0.9rem;
-            font-size: 0.78rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            cursor: pointer;
-            color: var(--text-muted);
-            transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
-        }
-
-        .filter-chip span {
-            font-size: 0.7rem;
-        }
-
-        .filter-chip.active {
-            background: rgba(255,255,255,0.12);
-            border-color: rgba(255,255,255,0.85);
-            color: #ffffff;
-            transform: translateY(-1px);
-        }
-
-        /* Cards grid */
+        /* CARDS */
         .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 1.2rem;
+            display:grid;
+            grid-template-columns:repeat(3, 1fr);
+            gap:1.2rem;
         }
 
         .card {
-            position: relative;
-            border-radius: var(--radius-xl);
-            background: var(--card-bg);
-            border: 1px solid var(--border-subtle);
-            box-shadow: var(--shadow-card);
-            overflow: hidden;
-            transition: transform var(--transition-med), box-shadow var(--transition-med), border-color var(--transition-fast);
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 48px rgba(0,0,0,0.9);
-            border-color: rgba(255,255,255,0.28);
-        }
-
-        .card-header {
-            padding: 0.85rem 0.9rem 0.4rem;
-            border-bottom: 1px solid #222;
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            gap: 0.4rem;
-        }
-
-        .card-kicker {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.18em;
-            color: var(--text-muted);
-        }
-
-        .card-title {
-            font-size: 0.9rem;
-            font-weight: 550;
-        }
-
-        .card-tag {
-            font-size: 0.7rem;
-            padding: 0.18rem 0.6rem;
-            border-radius: 999px;
-            border: 1px solid rgba(255,255,255,0.26);
-            color: var(--text-muted);
-            background: rgba(0,0,0,0.9);
-            white-space: nowrap;
-        }
-
-        .card-tag.live {
-            border-color: rgba(34,197,94,0.8);
-            color: #bbf7d0;
-            background: rgba(22,163,74,0.1);
-        }
-
-        .card-body {
-            padding: 0.7rem 0.9rem 0.85rem;
-            font-size: 0.78rem;
-            color: var(--text-muted);
-        }
-
-        .card-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 0.6rem;
-        }
-
-        .meta-pill {
-            padding: 0.16rem 0.6rem;
-            border-radius: 999px;
-            border: 1px solid rgba(255,255,255,0.2);
-            background: rgba(0,0,0,0.9);
-            font-size: 0.68rem;
-            color: #e5e5e5;
-        }
-
-        .card-footer {
-            border-top: 1px solid #222;
-            padding: 0.6rem 0.9rem 0.7rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 0.5rem;
-            font-size: 0.78rem;
-        }
-
-        .card-footer-left {
-            display: flex;
-            flex-direction: column;
-            gap: 0.15rem;
-        }
-
-        .card-label {
-            font-size: 0.68rem;
-            text-transform: uppercase;
-            letter-spacing: 0.18em;
-            color: var(--text-muted);
-        }
-
-        .card-link {
-            font-size: 0.74rem;
-            color: #ffffff;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .card-link-arrow {
-            font-size: 0.85rem;
-        }
-
-        .badge-soon {
-            font-size: 0.68rem;
-            text-transform: uppercase;
-            letter-spacing: 0.18em;
-            color: var(--text-muted);
-        }
-
-        /* Secondary layout: 2 columns */
-        .two-col {
-            display: grid;
-            grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.1fr);
-            gap: 1.5rem;
-            margin-top: 1.4rem;
-        }
-
-        .stack {
-            display: flex;
-            flex-direction: column;
-            gap: 0.9rem;
-        }
-
-        .info-block {
-            border-radius: var(--radius-xl);
-            background: var(--card-bg);
-            border: 1px solid var(--border-subtle);
-            box-shadow: var(--shadow-card);
-            padding: 0.85rem 0.95rem;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .info-block-title {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.18em;
-            color: #cccccc;
-            margin-bottom: 0.35rem;
-        }
-
-        .bullets {
-            list-style: none;
-            display: grid;
-            gap: 0.35rem;
-        }
-
-        .bullets li {
-            display: flex;
-            gap: 0.4rem;
-        }
-
-        .bullets li::before {
-            content: "•";
-            color: #ffffff;
-            font-size: 0.9rem;
-            line-height: 1.2;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 0.85rem;
-            margin-top: 0.5rem;
-        }
-
-        .contact-item {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .contact-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.18em;
-            color: #cccccc;
-            margin-bottom: 0.15rem;
-        }
-
-        .contact-value {
-            color: #e5e5e5;
-        }
-
-        .contact-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 0.6rem;
-        }
-
-        .contact-form {
-            display: grid;
-            gap: 0.55rem;
-            margin-top: 0.4rem;
-        }
-
-        .field {
-            display: flex;
-            flex-direction: column;
-            gap: 0.18rem;
-        }
-
-        .field label {
-            font-size: 0.72rem;
-            text-transform: uppercase;
-            letter-spacing: 0.18em;
-            color: #cccccc;
-        }
-
-        .field input,
-        .field textarea {
-            background: rgba(0,0,0,0.9);
-            border-radius: 999px;
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 0.45rem 0.8rem;
-            font-size: 0.8rem;
-            color: #e5e5e5;
-            outline: none;
-            transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
-        }
-
-        .field textarea {
-            border-radius: 16px;
-            min-height: 70px;
-            resize: vertical;
-        }
-
-        .field input::placeholder,
-        .field textarea::placeholder {
-            color: rgba(180,180,180,0.8);
-        }
-
-        .field input:focus,
-        .field textarea:focus {
-            border-color: rgba(255,255,255,0.7);
-            box-shadow: 0 0 0 1px rgba(255,255,255,0.35), 0 0 0 10px rgba(255,255,255,0.10);
-            background: #000000;
-        }
-
-        /* Footer */
-        .site-footer {
-            padding: 1.6rem 0 1.8rem;
-            margin-top: 1.6rem;
-            border-top: 1px solid #222222;
-            background: #000000;
-        }
-
-        .footer-inner {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 0.8rem;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
-
-        .footer-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .footer-links a {
-            font-size: 0.72rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 960px) {
-            .hero {
-                height: 70vh;
-            }
-
-            .hero-grid {
-                grid-template-columns: minmax(0, 1fr);
-            }
-
-            .hero-media {
-                order: -1;
-            }
-
-            .cards-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
-            .two-col {
-                grid-template-columns: minmax(0, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header-inner {
-                flex-wrap: wrap;
-                gap: 0.8rem;
-            }
-
-            nav {
-                width: 100%;
-                justify-content: space-between;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero {
-                padding-top: 2.6rem;
-            }
-
-            .hero-title {
-                font-size: 2.1rem;
-            }
-
-            .hero-subtitle {
-                font-size: 0.95rem;
-            }
-
-            .cards-grid {
-                grid-template-columns: minmax(0, 1fr);
-            }
-        }
-
-        @media (max-width: 520px) {
-            .header-inner {
-                padding-inline: 0.1rem;
-            }
-
-            .hero {
-                padding: 2.1rem 0 1.4rem;
-                height: 60vh;
-            }
+            background:var(--card-bg);
+            border:1px solid var(--border-subtle);
+            padding:1rem;
+            border-radius:12px;
         }
     </style>
 </head>
+
 <body>
 <div class="page">
-    <!-- Header -->
-    <header class="site-header">
-        <div class="container">
-            <div class="header-inner">
-                <a href="#" class="brand">
-                    <div class="brand-mark">
-                        <div class="brand-initial">SI</div>
-                    </div>
-                    <div class="brand-text">
-                        <div class="brand-name">Stratos Immobilier</div>
-                        <div class="brand-tagline">Locations & gestion immobilière</div>
-                    </div>
-                </a>
 
-                <nav>
-                    <div class="nav-links">
-                        <a href="#appartements" class="nav-link">Appartements</a>
-                        <a href="#courte-duree" class="nav-link">Courte durée</a>
-                        <a href="#espaces" class="nav-link">Entreposage</a>
-                        <a href="#garages" class="nav-link">Garages</a>
-                        <a href="#contact" class="nav-link">Contact</a>
-                    </div>
-                    <div class="nav-cta">
-                        <div class="nav-phone">
-                            <span>Contact&nbsp;:</span>
-                            <strong>514-992-1958</strong>
-                        </div>
-                        <a href="https://wa.me/15149921958" class="btn btn-whatsapp btn-pill btn-sm" target="_blank" rel="noreferrer">
-                            <span class="whatsapp-dot"></span>
-                            WhatsApp
-                        </a>
-                    </div>
-                </nav>
+<header class="site-header">
+    <div class="header-inner">
+        <a href="#" class="brand">
+            <div class="brand-mark">SI</div>
+            <div>
+                <div class="brand-name">Stratos Immobilier</div>
+                <div class="brand-tagline">Locations & gestion immobilière</div>
             </div>
+        </a>
+
+        <nav>
+            <div class="nav-links">
+                <a href="#tabs" class="nav-link">Appartements</a>
+                <a href="#tabs" class="nav-link">Courte durée</a>
+                <a href="#tabs" class="nav-link">Entreposage</a>
+                <a href="#tabs" class="nav-link">Garages</a>
+            </div>
+
+            <a href="https://wa.me/15149921958" class="btn-whatsapp" target="_blank">WhatsApp</a>
+        </nav>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h1 class="hero-title">Un seul site,<br>toutes vos locations.</h1>
+        <p class="hero-sub">Appartements, courte durée, entreposage et garages — tout centralisé.</p>
+
+        <div class="hero-actions">
+            <a href="#tabs" class="btn-outline">Voir les logements</a>
+            <a href="#contact" class="btn-outline">Contact</a>
         </div>
-    </header>
+    </div>
+</section>
 
-    <!-- Hero -->
-    <main>
-        <section class="hero">
-            <div class="container">
-                <div class="hero-grid">
-                    <div class="hero-copy">
-                        <div class="hero-kicker">
-                            <span class="dot-gold"></span>
-                            <span class="hero-kicker-text">Plateforme locative Stratos Immobilier</span>
-                        </div>
-                        <h1 class="hero-title">
-                            <span>Un seul site,</span><br>
-                            <span class="hero-title-accent">toutes vos locations.</span>
-                        </h1>
-                        <p class="hero-subtitle">
-                            Appartements à long terme, locations <strong>courte durée</strong>, espaces
-                            d’<strong>entreposage</strong> et <strong>garages</strong> — centralisés sur une
-                            plateforme claire, prête à être déclinée par immeuble.
-                        </p>
+<!-- TABS -->
+<section id="tabs" class="tabs-wrapper">
+    <div class="tabs">
+        <div class="tab active" data-tab="appartements">Appartements</div>
+        <div class="tab" data-tab="courte">Courte durée</div>
+        <div class="tab" data-tab="entreposage">Entreposage</div>
+        <div class="tab" data-tab="garages">Garages</div>
+    </div>
 
-                        <div class="hero-badges">
-                            <div class="badge badge-soft">
-                                <span class="badge-dot"></span>
-                                <span>Architecture prête pour plusieurs immeubles</span>
-                            </div>
-                            <div class="badge">
-                                <span class="badge-dot"></span>
-                                <span>Interface épurée & professionnelle</span>
-                            </div>
-                        </div>
+    <!-- ONGLET APPARTEMENTS -->
+    <div id="tab-appartements" class="tab-content active">
+        <div class="cards-grid">
 
-                        <div class="hero-actions">
-                            <a href="#appartements" class="btn btn-outline btn-pill">
-                                Voir les disponibilités
-                            </a>
-                            <a href="#contact" class="btn btn-pill">
-                                Parler à Stratos
-                            </a>
-                        </div>
-
-                        <div class="hero-meta">
-                            <div class="hero-meta-block">
-                                <div class="hero-meta-label">Types de locations</div>
-                                <div class="hero-meta-value">Appartements · Courte durée · Entreposage · Garages</div>
-                            </div>
-                            <div class="hero-meta-block">
-                                <div class="hero-meta-label">Structure du site</div>
-                                <div class="hero-meta-value">Séparation future par immeuble, annonces par secteur</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="card">
+                <h3>Appartement 1</h3>
+                <p>Unité résidentielle disponible.</p>
+                <a href="appartement1.html">Voir l’appartement →</a>
             </div>
-        </section>
 
-        <!-- Filtres / catégories -->
-        <section class="section" id="appartements">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-title-block">
-                        <div class="section-kicker">Navigation par type de location</div>
-                        <h2 class="section-title">Trouver rapidement le bon type d’espace</h2>
-                    </div>
-                    <div class="filters">
-                        <button class="filter-chip active" data-filter="all">
-                            <span>●</span>
-                            Tout afficher
-                        </button>
-                        <button class="filter-chip" data-filter="long-term">
-                            <span>●</span>
-                            Appartements
-                        </button>
-                        <button class="filter-chip" data-filter="short-term">
-                            <span>●</span>
-                            Courte durée
-                        </button>
-                        <button class="filter-chip" data-filter="storage">
-                            <span>●</span>
-                            Entreposage
-                        </button>
-                        <button class="filter-chip" data-filter="garage">
-                            <span>●</span>
-                            Garages
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Cartes principales -->
-                <div class="cards-grid" id="listing-grid">
-                    <!-- Appartement 1 – actif -->
-                    <article class="card" data-category="long-term">
-                        <div class="card-header">
-                            <div>
-                                <div class="card-kicker">Appartement 1</div>
-                                <div class="card-title">Unité résidentielle – fiche dédiée</div>
-                            </div>
-                            <div class="card-tag live">En ligne</div>
-                        </div>
-                        <div class="card-body">
-                            <p>
-                                Page spécifique pour l’Appartement&nbsp;1 (photos, caractéristiques, conditions,
-                                formulaire de contact). Le lien ci-dessous pointe vers cette fiche dédiée.
-                            </p>
-                            <div class="card-meta">
-                                <span class="meta-pill">Type : Appartement</span>
-                                <span class="meta-pill">Location long terme</span>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="card-footer-left">
-                                <div class="card-label">Accès direct</div>
-                                <!-- Remplacer appartement1.html par le vrai slug de la fiche -->
-                                <a href="appartement1.html" class="card-link">
-                                    Voir l’Appartement&nbsp;1
-                                    <span class="card-link-arrow">↗</span>
-                                </a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Location courte durée – à venir -->
-                    <article class="card" data-category="short-term">
-                        <div class="card-header">
-                            <div>
-                                <div class="card-kicker">Location courte durée</div>
-                                <div class="card-title">Appartements meublés & séjours flexibles</div>
-                            </div>
-                            <div class="card-tag">Bientôt disponible</div>
-                        </div>
-                        <div class="card-body">
-                            <p>
-                                Section réservée aux unités louées à la nuit, à la semaine ou au mois. Idéal pour
-                                intégrer plus tard les annonces de style Airbnb/chalets/locations corporatives.
-                            </p>
-                            <div class="card-meta">
-                                <span class="meta-pill">Séjours flexibles</span>
-                                <span class="meta-pill">Tarification dynamique</span>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="card-footer-left">
-                                <div class="card-label">Statut</div>
-                                <div class="badge-soon">Structure prête · contenu à ajouter</div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Entreposage – à venir -->
-                    <article class="card" data-category="storage">
-                        <div class="card-header">
-                            <div>
-                                <div class="card-kicker">Espaces d’entreposage</div>
-                                <div class="card-title">Rangement, lockers & mini-entrepôts</div>
-                            </div>
-                            <div class="card-tag">Bientôt disponible</div>
-                        </div>
-                        <div class="card-body">
-                            <p>
-                                Module pour annoncer des lockers, espaces d’entreposage ou sous-sols. Chaque espace
-                                pourra être rattaché à un immeuble précis (ex. « Immeuble X – Locker #12 »).
-                            </p>
-                            <div class="card-meta">
-                                <span class="meta-pill">Entreposage</span>
-                                <span class="meta-pill">Gestion centralisée</span>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="card-footer-left">
-                                <div class="card-label">Statut</div>
-                                <div class="badge-soon">Structure prête · contenu à ajouter</div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Garages – à venir -->
-                    <article class="card" data-category="garage" id="garages">
-                        <div class="card-header">
-                            <div>
-                                <div class="card-kicker">Garages & stationnements</div>
-                                <div class="card-title">Places de stationnement & garages privés</div>
-                            </div>
-                            <div class="card-tag">Bientôt disponible</div>
-                        </div>
-                        <div class="card-body">
-                            <p>
-                                Section pour les garages simples/doubles, espaces de stationnement extérieurs, 
-                                et tout ce qui touche le parc de stationnement.
-                            </p>
-                            <div class="card-meta">
-                                <span class="meta-pill">Garages</span>
-                                <span class="meta-pill">Stationnements</span>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="card-footer-left">
-                                <div class="card-label">Statut</div>
-                                <div class="badge-soon">Structure prête · contenu à ajouter</div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Immeubles – gabarit pour séparation par immeuble -->
-                    <article class="card" data-category="long-term">
-                        <div class="card-header">
-                            <div>
-                                <div class="card-kicker">Gabarit immeuble</div>
-                                <div class="card-title">Séparer les annonces par bâtiment</div>
-                            </div>
-                            <div class="card-tag">Template</div>
-                        </div>
-                        <div class="card-body">
-                            <p>
-                                Utilise ce gabarit pour créer des pages « Immeuble A », « Immeuble B », etc. Chaque
-                                immeuble pourra ensuite lister ses propres appartements, garages et espaces d’entreposage.
-                            </p>
-                            <div class="card-meta">
-                                <span class="meta-pill">Immeubles distincts</span>
-                                <span class="meta-pill">Sections dédiées</span>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="card-footer-left">
-                                <div class="card-label">Évolution</div>
-                                <div class="badge-soon">Prévu pour la croissance du parc</div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- À personnaliser plus tard -->
-                    <article class="card" data-category="all">
-                        <div class="card-header">
-                            <div>
-                                <div class="card-kicker">À personnaliser</div>
-                                <div class="card-title">Section libre pour un futur type</div>
-                            </div>
-                            <div class="card-tag">Placeholder</div>
-                        </div>
-                        <div class="card-body">
-                            <p>
-                                Bloc entièrement libre à ajuster pour un type de location spécifique (local commercial,
-                                bureau, etc.), sans toucher au reste de la mise en page.
-                            </p>
-                            <div class="card-meta">
-                                <span class="meta-pill">Flexible</span>
-                                <span class="meta-pill">Évolutif</span>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="card-footer-left">
-                                <div class="card-label">Usage</div>
-                                <div class="badge-soon">À définir</div>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- Courte durée & espaces -->
-        <section class="section" id="courte-duree">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-title-block">
-                        <div class="section-kicker">Modules dédiés</div>
-                        <h2 class="section-title">Courte durée, entreposage & garages</h2>
-                        <p class="section-subtitle">
-                            Ces modules peuvent reprendre la logique des grands sites de gestion (comme Cromwell) :
-                            catégories claires, filtrage simple, navigation par immeuble ou par type de location.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="two-col">
-                    <div class="stack">
-                        <div class="info-block">
-                            <div class="info-block-title">Location courte durée</div>
-                            <ul class="bullets">
-                                <li>Page catégorie pour tous les logements loués à la nuit, semaine ou mois.</li>
-                                <li>Possibilité d’ajouter un lien vers une plateforme externe (Airbnb, Booking, etc.).</li>
-                                <li>Affichage des disponibilités, photos et règles de maison.</li>
-                            </ul>
-                        </div>
-
-                        <div class="info-block" id="espaces">
-                            <div class="info-block-title">Espaces d’entreposage & garages</div>
-                            <ul class="bullets">
-                                <li>Liste des lockers, espaces de rangement, garages et stationnements.</li>
-                                <li>Distinction claire entre « Entreposage » et « Garage / Stationnement ».</li>
-                                <li>Compatible avec l’idée d’assigner chaque espace à un immeuble précis.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="stack">
-                        <div class="info-block" id="contact">
-                            <div class="info-block-title">Contact Stratos Immobilier</div>
-                            <div class="contact-grid">
-                                <div class="contact-item">
-                                    <div class="contact-label">Téléphone</div>
-                                    <div class="contact-value">514-992-1958</div>
-                                </div>
-                                <div class="contact-item">
-                                    <div class="contact-label">Courriel</div>
-                                    <div class="contact-value">
-                                        <a href="mailto:stratosimmobilier@hotmail.com">
-                                            stratosimmobilier@hotmail.com
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="contact-actions">
-                                <a href="tel:15149921958" class="btn btn-outline btn-pill btn-sm">
-                                    Appeler
-                                </a>
-                                <a href="mailto:stratosimmobilier@hotmail.com" class="btn btn-pill btn-sm">
-                                    Écrire un courriel
-                                </a>
-                                <a href="https://wa.me/15149921958" class="btn btn-whatsapp btn-pill btn-sm" target="_blank" rel="noreferrer">
-                                    <span class="whatsapp-dot"></span>
-                                    Écrire sur WhatsApp
-                                </a>
-                            </div>
-
-                            <form class="contact-form">
-                                <div class="field">
-                                    <label for="name">Nom</label>
-                                    <input id="name" type="text" name="name" placeholder="Votre nom complet">
-                                </div>
-                                <div class="field">
-                                    <label for="email">Courriel</label>
-                                    <input id="email" type="email" name="email" placeholder="Votre adresse courriel">
-                                </div>
-                                <div class="field">
-                                    <label for="message">Message</label>
-                                    <textarea id="message" name="message" placeholder="Décrivez ce que vous recherchez (appartement, courte durée, entreposage, garage)…"></textarea>
-                                </div>
-                                <!-- À connecter plus tard à un backend ou un outil de formulaire -->
-                                <button type="submit" class="btn btn-outline btn-pill btn-sm">
-                                    Envoyer la demande
-                                </button>
-                            </form>
-                        </div>
-
-                        <div class="info-block">
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-inner">
-                <div>
-                    © <span id="year"></span> Stratos Immobilier. Tous droits réservés.
-                </div>
-                <div class="footer-links">
-                    <a href="#appartements">Appartements</a>
-                    <a href="#courte-duree">Courte durée</a>
-                    <a href="#espaces">Entreposage & garages</a>
-                    <a href="#contact">Contact</a>
-                </div>
-            </div>
         </div>
-    </footer>
-</div>
+    </div>
+
+    <!-- ONGLET COURTE DURÉE -->
+    <div id="tab-courte" class="tab-content">
+        <div class="cards-grid">
+
+            <div class="card">
+                <h3>Logement meublé</h3>
+                <p>Location à la nuit, semaine ou mois.</p>
+                <a href="#">Voir plus →</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ONGLET ENTREPOSAGE -->
+    <div id="tab-entreposage" class="tab-content">
+        <div class="cards-grid">
+
+            <div class="card">
+                <h3>Locker / rangement</h3>
+                <p>Espace sécuritaire d’entreposage.</p>
+                <a href="#">Voir plus →</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ONGLET GARAGES -->
+    <div id="tab-garages" class="tab-content">
+        <div class="cards-grid">
+
+            <div class="card">
+                <h3>Garage privé</h3>
+                <p>Stationnement intérieur ou extérieur.</p>
+                <a href="#">Voir plus →</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="max-width:1180px;margin:3rem auto;padding:0 1rem;">
+    <h2 style="text-transform:uppercase;margin-bottom:1rem;">Contact</h2>
+
+    <p style="color:#b5b5b5;">Téléphone : <strong>514-992-1958</strong></p>
+    <p style="color:#b5b5b5;">Courriel : <a href="mailto:stratosimmobilier@hotmail.com">stratosimmobilier@hotmail.com</a></p>
+</section>
+
+<footer style="border-top:1px solid #222;padding:2rem 0;margin-top:3rem;">
+    <div style="max-width:1180px;margin:auto;padding:0 1rem;display:flex;justify-content:space-between;color:#888;font-size:0.8rem;">
+        <div>© <span id="year"></span> Stratos Immobilier</div>
+        <div style="display:flex;gap:1rem;">
+            <a href="#tabs">Appartements</a>
+            <a href="#tabs">Courte durée</a>
+            <a href="#tabs">Entreposage</a>
+            <a href="#tabs">Garages</a>
+        </div>
+    </div>
+</footer>
 
 <script>
-    // Année dynamique
-    document.getElementById('year').textContent = new Date().getFullYear().toString();
+document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Filtres par catégorie
-    const filterChips = document.querySelectorAll('.filter-chip');
-    const cards = document.querySelectorAll('#listing-grid .card');
+const tabs = document.querySelectorAll('.tab');
+const contents = document.querySelectorAll('.tab-content');
 
-    filterChips.forEach(chip => {
-        chip.addEventListener('click', () => {
-            const filter = chip.getAttribute('data-filter');
+tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        const target = tab.dataset.tab;
 
-            filterChips.forEach(c => c.classList.remove('active'));
-            chip.classList.add('active');
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
 
-            cards.forEach(card => {
-                const cat = card.getAttribute('data-category');
-                if (filter === 'all' || filter === cat) {
-                    card.style.display = '';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
+        contents.forEach(c => c.classList.remove('active'));
+        document.getElementById("tab-" + target).classList.add('active');
     });
+});
 </script>
+
+</div>
 </body>
 </html>
-
-
