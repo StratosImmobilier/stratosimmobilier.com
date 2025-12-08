@@ -7,20 +7,20 @@
     <meta name="description" content="Stratos Immobilier – Appartements, locations courte durée, espaces d’entreposage et garages.">
     <style>
         :root {
-            --primary: #111827;
-            --primary-light: #1f2937;
-            --accent: #fbbf24;
-            --accent-soft: rgba(251, 191, 36, 0.12);
-            --bg: #0b1120;
-            --bg-soft: #020617;
-            --text-main: #f9fafb;
-            --text-muted: #9ca3af;
-            --card-bg: #020617;
-            --border-subtle: #111827;
+            --primary: #ffffff;
+            --primary-light: #e5e5e5;
+            --accent: #ffffff;
+            --accent-soft: rgba(255,255,255,0.15);
+            --bg: #000000;
+            --bg-soft: #111111;
+            --text-main: #ffffff;
+            --text-muted: #b5b5b5;
+            --card-bg: #0a0a0a;
+            --border-subtle: #222222;
             --radius-xl: 18px;
             --radius-2xl: 24px;
-            --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.75);
-            --shadow-card: 0 16px 40px rgba(15,23,42,0.85);
+            --shadow-soft: 0 18px 45px rgba(0,0,0,0.7);
+            --shadow-card: 0 16px 40px rgba(0,0,0,0.65);
             --transition-fast: 0.18s ease-out;
             --transition-med: 0.25s ease-out;
         }
@@ -33,7 +33,7 @@
 
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
-            background: radial-gradient(circle at top, #020617 0, #020617 45%, #020617 70%, #020617 100%);
+            background: var(--bg);
             color: var(--text-main);
             line-height: 1.6;
         }
@@ -51,7 +51,7 @@
         /* Layout */
         .page {
             min-height: 100vh;
-            background: radial-gradient(circle at top, #111827 0, #020617 52%, #020617 100%);
+            background: #000;
         }
 
         .container {
@@ -63,19 +63,20 @@
 
         /* Header */
         .site-header {
-            position: sticky;
+            position: fixed;
             top: 0;
             z-index: 50;
+            width: 100%;
             backdrop-filter: blur(18px);
-            background: linear-gradient(to bottom, rgba(2,6,23,0.9), rgba(2,6,23,0.8), transparent);
-            border-bottom: 1px solid rgba(15,23,42,0.85);
+            background: rgba(0,0,0,0.9);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
         }
 
         .header-inner {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0.75rem 0;
+            padding: 0.9rem 0;
         }
 
         .brand {
@@ -85,20 +86,20 @@
         }
 
         .brand-mark {
-            width: 34px;
-            height: 34px;
+            width: 36px;
+            height: 36px;
             border-radius: 999px;
-            background: radial-gradient(circle at 30% 20%, #facc15 0, #f59e0b 34%, #111827 100%);
+            background: #ffffff;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 0 1px rgba(248,250,252,0.04), 0 12px 35px rgba(15,23,42,0.9);
+            box-shadow: 0 0 0 1px rgba(248,250,252,0.08), 0 12px 35px rgba(0,0,0,0.9);
         }
 
         .brand-initial {
             font-size: 0.95rem;
             letter-spacing: 0.06em;
-            color: #0b1120;
+            color: #000000;
             font-weight: 800;
         }
 
@@ -109,8 +110,8 @@
         }
 
         .brand-name {
-            font-size: 1.1rem;
-            font-weight: 650;
+            font-size: 1.2rem;
+            font-weight: 700;
             letter-spacing: 0.16em;
             text-transform: uppercase;
         }
@@ -130,7 +131,7 @@
 
         .nav-links {
             display: flex;
-            gap: 1.4rem;
+            gap: 1.8rem;
             font-size: 0.78rem;
             text-transform: uppercase;
             letter-spacing: 0.16em;
@@ -139,7 +140,10 @@
 
         .nav-link {
             position: relative;
-            padding-bottom: 0.2rem;
+            padding-bottom: 0.15rem;
+            color: #ffffff;
+            opacity: 0.9;
+            transition: opacity var(--transition-fast);
         }
 
         .nav-link::after {
@@ -149,8 +153,12 @@
             bottom: 0;
             width: 0;
             height: 1px;
-            background: linear-gradient(to right, #facc15, #f97316);
+            background: #ffffff;
             transition: width var(--transition-fast);
+        }
+
+        .nav-link:hover {
+            opacity: 1;
         }
 
         .nav-link:hover::after {
@@ -190,25 +198,26 @@
         }
 
         .btn-whatsapp {
-            background: radial-gradient(circle at 0 0, #22c55e 0, #16a34a 40%, #052e16 100%);
-            box-shadow: 0 14px 34px rgba(22,163,74,0.55);
+            background: #25D366;
+            color: #000;
+            box-shadow: 0 14px 24px rgba(0,0,0,0.5);
             padding-inline: 1.2rem;
         }
 
         .btn-whatsapp:hover {
             transform: translateY(-1px) scale(1.01);
-            box-shadow: 0 18px 40px rgba(22,163,74,0.75);
+            box-shadow: 0 18px 32px rgba(0,0,0,0.7);
         }
 
         .btn-outline {
-            border-color: rgba(148,163,184,0.4);
-            background: rgba(15,23,42,0.65);
+            border-color: rgba(255,255,255,0.24);
+            background: rgba(0,0,0,0.65);
         }
 
         .btn-outline:hover {
-            border-color: rgba(248,250,252,0.4);
-            background: rgba(15,23,42,0.9);
-            box-shadow: 0 12px 32px rgba(15,23,42,0.8);
+            border-color: rgba(255,255,255,0.6);
+            background: rgba(0,0,0,0.9);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.8);
             transform: translateY(-1px);
         }
 
@@ -225,26 +234,41 @@
             width: 7px;
             height: 7px;
             border-radius: 999px;
-            background: #bbf7d0;
-            box-shadow: 0 0 12px rgba(134,239,172,0.8);
+            background: #000000;
         }
 
-        /* Hero */
+        /* Hero full-width */
+
         .hero {
             position: relative;
-            padding: 3.5rem 0 2.5rem;
+            padding: 0;
+            margin-top: 72px;
+            width: 100%;
+            height: 80vh;
+            background: url("hero.jpg") center center / cover no-repeat;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0.45),
+                rgba(0,0,0,0.9)
+            );
         }
 
         .hero-grid {
-            display: grid;
-            grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.1fr);
-            gap: 2.5rem;
-            align-items: center;
+            display: block;
         }
 
         .hero-copy {
             position: relative;
             z-index: 2;
+            max-width: 540px;
         }
 
         .hero-kicker {
@@ -253,8 +277,8 @@
             gap: 0.55rem;
             padding: 0.12rem 0.45rem;
             border-radius: 999px;
-            border: 1px solid rgba(148,163,184,0.4);
-            background: rgba(15,23,42,0.85);
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(0,0,0,0.7);
             margin-bottom: 1rem;
         }
 
@@ -262,8 +286,7 @@
             width: 6px;
             height: 6px;
             border-radius: 999px;
-            background: #facc15;
-            box-shadow: 0 0 14px rgba(250,204,21,0.8);
+            background: #ffffff;
         }
 
         .hero-kicker-text {
@@ -274,8 +297,8 @@
         }
 
         .hero-title {
-            font-size: clamp(2rem, 2.85vw, 2.6rem);
-            letter-spacing: 0.04em;
+            font-size: clamp(2.3rem, 3.4vw, 3rem);
+            letter-spacing: 0.08em;
             text-transform: uppercase;
             line-height: 1.15;
             margin-bottom: 0.8rem;
@@ -286,20 +309,18 @@
         }
 
         .hero-title-accent {
-            background: linear-gradient(110deg, #facc15, #f97316);
-            -webkit-background-clip: text;
-            color: transparent;
+            color: #ffffff;
         }
 
         .hero-subtitle {
-            font-size: 0.95rem;
-            max-width: 34rem;
+            font-size: 1.05rem;
+            max-width: 32rem;
             color: var(--text-muted);
             margin-bottom: 1.4rem;
         }
 
         .hero-subtitle strong {
-            color: #e5e7eb;
+            color: #ffffff;
             font-weight: 500;
         }
 
@@ -313,8 +334,8 @@
         .badge {
             padding: 0.28rem 0.75rem;
             border-radius: 999px;
-            border: 1px solid rgba(148,163,184,0.45);
-            background: rgba(15,23,42,0.85);
+            border: 1px solid rgba(255,255,255,0.24);
+            background: rgba(0,0,0,0.6);
             font-size: 0.74rem;
             color: var(--text-muted);
             display: inline-flex;
@@ -326,13 +347,13 @@
             width: 5px;
             height: 5px;
             border-radius: 999px;
-            background: #facc15;
+            background: #ffffff;
         }
 
         .badge-soft {
-            background: rgba(251, 191, 36, 0.08);
-            border-color: rgba(251, 191, 36, 0.6);
-            color: #facc15;
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(255,255,255,0.5);
+            color: #ffffff;
         }
 
         .hero-actions {
@@ -361,110 +382,21 @@
             text-transform: uppercase;
             letter-spacing: 0.18em;
             font-size: 0.68rem;
-            color: rgba(148,163,184,0.9);
+            color: rgba(200,200,200,0.9);
         }
 
         .hero-meta-value {
-            color: #e5e7eb;
+            color: #e5e5e5;
         }
 
         .hero-media {
-            position: relative;
+            display: none; /* on ne garde que la bannière full image */
         }
 
-        .hero-card {
-            position: relative;
-            border-radius: var(--radius-2xl);
-            overflow: hidden;
-            box-shadow: var(--shadow-soft);
-            border: 1px solid rgba(15,23,42,0.9);
-            background: radial-gradient(circle at top, rgba(15,23,42,0.85), #020617);
-            isolation: isolate;
-        }
+        /* Filters / sections */
 
-        .hero-image-wrap {
-            position: relative;
-            overflow: hidden;
-            max-height: 420px;
-        }
-
-        .hero-image-wrap::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at top, rgba(15,23,42,0.25), transparent 55%);
-            z-index: 1;
-        }
-
-        .hero-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform: scale(1.02);
-        }
-
-        .hero-overlay {
-            position: absolute;
-            inset: auto 1.3rem 1.1rem 1.3rem;
-            z-index: 2;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            gap: 1rem;
-        }
-
-        .hero-overlay-main {
-            background: linear-gradient(to right, rgba(15,23,42,0.96), rgba(15,23,42,0.85));
-            padding: 0.75rem 0.9rem;
-            border-radius: 16px;
-            border: 1px solid rgba(15,23,42,0.9);
-            box-shadow: 0 12px 28px rgba(15,23,42,0.9);
-            max-width: 60%;
-        }
-
-        .hero-appt-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: #9ca3af;
-            margin-bottom: 0.18rem;
-        }
-
-        .hero-appt-title {
-            font-size: 0.9rem;
-            font-weight: 550;
-        }
-
-        .hero-appt-meta {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-top: 0.25rem;
-        }
-
-        .hero-pill {
-            background: rgba(15,23,42,0.96);
-            border-radius: 999px;
-            padding: 0.4rem 0.75rem;
-            border: 1px solid rgba(148,163,184,0.6);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.45rem;
-            font-size: 0.74rem;
-            color: var(--text-muted);
-            white-space: nowrap;
-        }
-
-        .hero-pill-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 999px;
-            background: #22c55e;
-            box-shadow: 0 0 14px rgba(34,197,94,0.85);
-        }
-
-        /* Filters */
         .section {
-            padding: 1.6rem 0 0.2rem;
+            padding: 2.2rem 0 0.2rem;
         }
 
         .section-header {
@@ -507,8 +439,8 @@
 
         .filter-chip {
             border-radius: 999px;
-            border: 1px solid rgba(148,163,184,0.5);
-            background: rgba(15,23,42,0.9);
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(0,0,0,0.9);
             padding: 0.4rem 0.9rem;
             font-size: 0.78rem;
             display: inline-flex;
@@ -524,9 +456,9 @@
         }
 
         .filter-chip.active {
-            background: rgba(251,191,36,0.12);
-            border-color: rgba(251,191,36,0.8);
-            color: #facc15;
+            background: rgba(255,255,255,0.12);
+            border-color: rgba(255,255,255,0.85);
+            color: #ffffff;
             transform: translateY(-1px);
         }
 
@@ -540,8 +472,8 @@
         .card {
             position: relative;
             border-radius: var(--radius-xl);
-            background: radial-gradient(circle at 0 0, rgba(15,23,42,0.9), #020617);
-            border: 1px solid rgba(15,23,42,0.9);
+            background: var(--card-bg);
+            border: 1px solid var(--border-subtle);
             box-shadow: var(--shadow-card);
             overflow: hidden;
             transition: transform var(--transition-med), box-shadow var(--transition-med), border-color var(--transition-fast);
@@ -549,13 +481,13 @@
 
         .card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 20px 48px rgba(15,23,42,0.95);
-            border-color: rgba(148,163,184,0.7);
+            box-shadow: 0 20px 48px rgba(0,0,0,0.9);
+            border-color: rgba(255,255,255,0.28);
         }
 
         .card-header {
             padding: 0.85rem 0.9rem 0.4rem;
-            border-bottom: 1px solid rgba(31,41,55,0.9);
+            border-bottom: 1px solid #222;
             display: flex;
             align-items: baseline;
             justify-content: space-between;
@@ -578,9 +510,9 @@
             font-size: 0.7rem;
             padding: 0.18rem 0.6rem;
             border-radius: 999px;
-            border: 1px solid rgba(148,163,184,0.6);
+            border: 1px solid rgba(255,255,255,0.26);
             color: var(--text-muted);
-            background: rgba(15,23,42,0.9);
+            background: rgba(0,0,0,0.9);
             white-space: nowrap;
         }
 
@@ -606,14 +538,14 @@
         .meta-pill {
             padding: 0.16rem 0.6rem;
             border-radius: 999px;
-            border: 1px solid rgba(30,64,175,0.7);
-            background: rgba(15,23,42,0.9);
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(0,0,0,0.9);
             font-size: 0.68rem;
-            color: #e5e7eb;
+            color: #e5e5e5;
         }
 
         .card-footer {
-            border-top: 1px solid rgba(31,41,55,0.9);
+            border-top: 1px solid #222;
             padding: 0.6rem 0.9rem 0.7rem;
             display: flex;
             align-items: center;
@@ -637,7 +569,7 @@
 
         .card-link {
             font-size: 0.74rem;
-            color: #e5e7eb;
+            color: #ffffff;
             display: inline-flex;
             align-items: center;
             gap: 0.3rem;
@@ -670,8 +602,8 @@
 
         .info-block {
             border-radius: var(--radius-xl);
-            background: radial-gradient(circle at 0 0, rgba(15,23,42,0.9), #020617);
-            border: 1px solid rgba(15,23,42,0.9);
+            background: var(--card-bg);
+            border: 1px solid var(--border-subtle);
             box-shadow: var(--shadow-card);
             padding: 0.85rem 0.95rem;
             font-size: 0.8rem;
@@ -682,7 +614,7 @@
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 0.18em;
-            color: #9ca3af;
+            color: #cccccc;
             margin-bottom: 0.35rem;
         }
 
@@ -699,7 +631,7 @@
 
         .bullets li::before {
             content: "•";
-            color: #facc15;
+            color: #ffffff;
             font-size: 0.9rem;
             line-height: 1.2;
         }
@@ -720,12 +652,12 @@
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.18em;
-            color: rgba(148,163,184,0.95);
+            color: #cccccc;
             margin-bottom: 0.15rem;
         }
 
         .contact-value {
-            color: #e5e7eb;
+            color: #e5e5e5;
         }
 
         .contact-actions {
@@ -751,17 +683,17 @@
             font-size: 0.72rem;
             text-transform: uppercase;
             letter-spacing: 0.18em;
-            color: rgba(148,163,184,0.95);
+            color: #cccccc;
         }
 
         .field input,
         .field textarea {
-            background: rgba(15,23,42,0.9);
+            background: rgba(0,0,0,0.9);
             border-radius: 999px;
-            border: 1px solid rgba(30,64,175,0.8);
+            border: 1px solid rgba(255,255,255,0.2);
             padding: 0.45rem 0.8rem;
             font-size: 0.8rem;
-            color: #e5e7eb;
+            color: #e5e5e5;
             outline: none;
             transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
         }
@@ -774,22 +706,22 @@
 
         .field input::placeholder,
         .field textarea::placeholder {
-            color: rgba(148,163,184,0.75);
+            color: rgba(180,180,180,0.8);
         }
 
         .field input:focus,
         .field textarea:focus {
-            border-color: rgba(129,140,248,0.9);
-            box-shadow: 0 0 0 1px rgba(99,102,241,0.4), 0 0 0 12px rgba(30,64,175,0.28);
-            background: rgba(15,23,42,0.96);
+            border-color: rgba(255,255,255,0.7);
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.35), 0 0 0 10px rgba(255,255,255,0.10);
+            background: #000000;
         }
 
         /* Footer */
         .site-footer {
             padding: 1.6rem 0 1.8rem;
             margin-top: 1.6rem;
-            border-top: 1px solid rgba(15,23,42,0.95);
-            background: radial-gradient(circle at top, #020617 0, #020617 100%);
+            border-top: 1px solid #222222;
+            background: #000000;
         }
 
         .footer-inner {
@@ -814,6 +746,10 @@
 
         /* Responsive */
         @media (max-width: 960px) {
+            .hero {
+                height: 70vh;
+            }
+
             .hero-grid {
                 grid-template-columns: minmax(0, 1fr);
             }
@@ -851,15 +787,11 @@
             }
 
             .hero-title {
-                font-size: 1.7rem;
+                font-size: 2.1rem;
             }
 
             .hero-subtitle {
-                font-size: 0.9rem;
-            }
-
-            .hero-overlay-main {
-                max-width: 100%;
+                font-size: 0.95rem;
             }
 
             .cards-grid {
@@ -874,15 +806,7 @@
 
             .hero {
                 padding: 2.1rem 0 1.4rem;
-            }
-
-            .hero-overlay {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .hero-pill {
-                justify-content: center;
+                height: 60vh;
             }
         }
     </style>
@@ -908,6 +832,7 @@
                         <a href="#appartements" class="nav-link">Appartements</a>
                         <a href="#courte-duree" class="nav-link">Courte durée</a>
                         <a href="#espaces" class="nav-link">Entreposage</a>
+                        <a href="#garages" class="nav-link">Garages</a>
                         <a href="#contact" class="nav-link">Contact</a>
                     </div>
                     <div class="nav-cta">
@@ -975,28 +900,6 @@
                                 <div class="hero-meta-value">Séparation future par immeuble, annonces par secteur</div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="hero-media">
-                        <article class="hero-card">
-                            <div class="hero-image-wrap">
-                                <!-- Image hero à placer à la racine : hero.jpg -->
-                                <img src="hero.jpg" alt="Stratos Immobilier – Vue d’un immeuble locatif" class="hero-image">
-                            </div>
-                            <div class="hero-overlay">
-                                <div class="hero-overlay-main">
-                                    <div class="hero-appt-label">Appartement actif</div>
-                                    <div class="hero-appt-title">Appartement&nbsp;1</div>
-                                    <div class="hero-appt-meta">
-                                        Fiche détaillée dédiée, liens vers photos, caractéristiques et formulaire de demande.
-                                    </div>
-                                </div>
-                                <div class="hero-pill">
-                                    <span class="hero-pill-dot"></span>
-                                    <span>Plateforme Stratos en ligne</span>
-                                </div>
-                            </div>
-                        </article>
                     </div>
                 </div>
             </div>
@@ -1126,7 +1029,7 @@
                     </article>
 
                     <!-- Garages – à venir -->
-                    <article class="card" data-category="garage">
+                    <article class="card" data-category="garage" id="garages">
                         <div class="card-header">
                             <div>
                                 <div class="card-kicker">Garages & stationnements</div>
