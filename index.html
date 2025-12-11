@@ -181,6 +181,25 @@
             padding:1rem;
             border-radius:12px;
         }
+
+        /* CONTACT SECTION */
+        #contact {
+            max-width:1180px;
+            margin:3rem auto;
+            padding:0 1rem;
+        }
+
+        footer {
+            border-top:1px solid #222;
+            padding:2rem 0;
+            margin-top:3rem;
+        }
+
+        footer div {
+            text-align:center;
+            color:#888;
+            font-size:0.8rem;
+        }
     </style>
 </head>
 
@@ -286,23 +305,16 @@
 </section>
 
 <!-- CONTACT -->
-<section id="contact" style="max-width:1180px;margin:3rem auto;padding:0 1rem;">
+<section id="contact">
     <h2 style="text-transform:uppercase;margin-bottom:1rem;">Contact</h2>
 
     <p style="color:#b5b5b5;">Téléphone : <strong>514-992-1958</strong></p>
     <p style="color:#b5b5b5;">Courriel : <a href="mailto:stratosimmobilier@hotmail.com">stratosimmobilier@hotmail.com</a></p>
 </section>
 
-<footer style="border-top:1px solid #222;padding:2rem 0;margin-top:3rem;">
-    <div style="max-width:1180px;margin:auto;padding:0 1rem;display:flex;justify-content:space-between;color:#888;font-size:0.8rem;">
-        <div>© <span id="year"></span> Stratos Immobilier</div>
-        <div style="display:flex;gap:1rem;">
-            <a href="#tabs">Appartements</a>
-            <a href="#tabs">Courte durée</a>
-            <a href="#tabs">Entreposage</a>
-            <a href="#tabs">Garages</a>
-        </div>
-    </div>
+<!-- CLEAN FOOTER WITHOUT DUPLICATE LINKS -->
+<footer>
+    <div>© <span id="year"></span> Stratos Immobilier</div>
 </footer>
 
 <script>
