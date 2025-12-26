@@ -38,6 +38,15 @@ header{
   letter-spacing: 0.08em;
 }
 
+header a{
+  color:#fff;
+  text-decoration:none;
+}
+
+header a:hover{
+  opacity:0.85;
+}
+
 /* SECTION */
 .container{
   max-width:1100px;
@@ -85,10 +94,23 @@ h2{
   opacity: 0.96;
 }
 
+/* VIDEO */
+.video-wrapper{
+  margin: 22px 0 36px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.video-wrapper iframe{
+  width:100%;
+  height:520px;
+  border:0;
+}
+
 /* DESCRIPTION */
 p{
   line-height: 1.75;
-  color: var(--text);
   margin: 0 0 14px 0;
 }
 
@@ -113,7 +135,6 @@ p{
   box-shadow: 0 18px 60px rgba(0,0,0,0.55);
 }
 
-/* Close hint */
 .lightbox-hint{
   position: fixed;
   bottom: 18px;
@@ -121,7 +142,6 @@ p{
   transform: translateX(-50%);
   color: var(--muted);
   font-size: 13px;
-  letter-spacing: 0.02em;
   user-select: none;
 }
 </style>
@@ -130,7 +150,7 @@ p{
 <body>
 
 <header>
-  <a href="index.html" class="brand-link">STRATOS IMMOBILIER</a>
+  <a href="index.html">STRATOS IMMOBILIER</a>
 </header>
 
 <div class="container">
@@ -138,29 +158,41 @@ p{
   <h1>4 ½ entièrement rénové – Montréal-Nord</h1>
   <div class="price">1 650 $ / mois</div>
 
-  <h2>Galerie Photo</h2>
+  <h2>Galerie photo</h2>
   <div class="gallery">
-      <img src="photo1.jpg" class="zoomable" alt="Photo 1">
-      <img src="photo2.jpg" class="zoomable" alt="Photo 2">
-      <img src="photo3.jpg" class="zoomable" alt="Photo 3">
-      <img src="photo4.jpg" class="zoomable" alt="Photo 4">
+      <img src="photo1.jpg" class="zoomable" alt="Salon">
+      <img src="photo2.jpg" class="zoomable" alt="Cuisine">
+      <img src="photo3.jpg" class="zoomable" alt="Chambre">
+      <img src="photo4.jpg" class="zoomable" alt="Salle de bain">
+  </div>
+
+  <!-- VIDEO APPARTEMENT 1 -->
+  <h2>Vidéo</h2>
+  <div class="video-wrapper">
+    <iframe
+      src="https://www.youtube.com/embed/Dj9scFqa9Ss"
+      title="Visite vidéo – Appartement 4 ½ Montréal-Nord"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
   </div>
 
   <h2>Description</h2>
   <p>
-      Découvrez un superbe appartement 4 ½ entièrement rénové, situé dans un secteur calme et résidentiel
-      de Montréal-Nord. Cet espace moderne et lumineux est parfait pour un couple, une petite famille ou des
-      professionnels à la recherche d’un logement impeccable et confortable.
+    Découvrez un superbe appartement 4 ½ entièrement rénové, situé dans un secteur calme et résidentiel
+    de Montréal-Nord. Cet espace moderne et lumineux est parfait pour un couple, une petite famille ou des
+    professionnels à la recherche d’un logement impeccable et confortable.
   </p>
 
   <p>
-      L’unité offre deux grandes chambres, une cuisine neuve au design contemporain avec comptoirs en quartz,
-      un salon lumineux, une salle de bain entièrement refaite et des planchers modernes dans l’ensemble de l’appartement.
+    L’unité offre deux grandes chambres, une cuisine neuve au design contemporain avec comptoirs en quartz,
+    un salon lumineux, une salle de bain entièrement refaite et des planchers modernes dans l’ensemble de
+    l’appartement.
   </p>
 
   <p>
-      Proche des services, écoles, parcs, épiceries et transport en commun — un emplacement idéal combiné à
-      une rénovation complète pour un confort optimal.
+    Proche des services, écoles, parcs, épiceries et transport en commun — un emplacement idéal combiné à
+    une rénovation complète pour un confort optimal.
   </p>
 
 </div>
@@ -200,4 +232,3 @@ document.addEventListener("keydown", (e) => {
 
 </body>
 </html>
-
