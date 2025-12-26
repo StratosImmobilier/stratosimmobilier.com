@@ -1,12 +1,109 @@
-<div style="width:100%; height:450px; border:1px solid #222; border-radius:12px; overflow:hidden;">
-  <iframe
-    width="100%"
-    height="100%"
-    frameborder="0"
-    style="border:0"
-    loading="lazy"
-    allowfullscreen
-    referrerpolicy="no-referrer-when-downgrade"
-    src="https://www.google.com/maps?q=11320%20avenue%20Pelletier,%20Montr%C3%A9al,%20QC&output=embed">
-  </iframe>
-</div>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Logements à louer – Carte | Stratos Immobilier</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    header {
+      padding: 16px 20px;
+      border-bottom: 1px solid #222;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(12px);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    #map {
+      width: 100%;
+      height: calc(100vh - 64px);
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Logements à louer — Carte</h1>
+</header>
+
+<div id="map"></div>
+
+<script>
+  // Coordonnées EXACTES fournies (11320 avenue Pelletier)
+  const IMMEUBLES = [
+    {
+      nom: "11320 avenue Pelletier",
+      position: { lat: 45.596417, lng: -73.638500 },
+      url: "appartement1.html"
+    }
+  ];
+
+  // Callback global requis par Google Maps
+  window.initMap = function () {
+    const map = new google.maps.Map(document.getElementById("map"), {
+      center: IMMEUBLES[0].position,
+      zoom: 15,
+      mapTypeControl: false,
+      streetViewControl: false,
+      fullscreenControl: true
+    });
+
+    IMMEUBLES.forEach(imm => {
+      const marker = new google.maps.Marker({
+        position: imm.position,
+        map: map,
+        title: imm.nom
+      });
+
+      const info = new google.maps.InfoWindow({
+        content: `
+          <div style="font-family:system-ui;color:#000;max-width:240px;">
+            <strong>${escapeHtml(imm.nom)}</strong><br>
+            <a href="${escapeAttr(imm.url)}" target="_blank" rel="noopener">
+              Voir le logement →
+            </a>
+          </div>
+        `
+      });
+
+      marker.addListener("click", () => {
+        info.open({ map, anchor: marker });
+      });
+    });
+  };
+
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, s => ({
+      "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#039;"
+    }[s]));
+  }
+
+  function escapeAttr(str) {
+    return String(str).replace(/"/g, "&quot;");
+  }
+</script>
+
+<!-- GOOGLE MAPS API -->
+<!-- ⚠️ REMPLACE TA_VRAIE_CLE_API -->
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=TA_VRAIE_CLE_API&callback=initMap"
+  async
+  defer>
+</script>
+
+</body>
+</html>
