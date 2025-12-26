@@ -6,60 +6,124 @@
 <title>4 ½ Rénové – Montréal-Nord | Stratos Immobilier</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0d0d0d;
-    color: #e6e6e6;
+:root{
+  --bg:#0d0d0d;
+  --panel:#000;
+  --text:#e6e6e6;
+  --muted:#b5b5b5;
+  --border:#222;
+  --accent:#b8860b;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  background:var(--bg);
+  color:var(--text);
 }
 
 /* HEADER */
-header {
-    background: #000;
-    padding: 20px 40px;
-    border-bottom: 1px solid #222;
-    font-size: 24px;
-    font-weight: bold;
+header{
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(12px);
+  padding: 18px 40px;
+  border-bottom: 1px solid var(--border);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
 }
 
 /* SECTION */
-.container {
-    max-width: 1100px;
-    margin: 50px auto;
-    padding: 0 20px;
+.container{
+  max-width:1100px;
+  margin: 46px auto;
+  padding: 0 20px;
+}
+
+h1{
+  font-size: 32px;
+  margin: 0 0 10px 0;
+}
+
+.price{
+  font-size: 22px;
+  color: var(--accent);
+  margin-bottom: 26px;
+}
+
+h2{
+  font-size: 18px;
+  margin: 26px 0 12px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 /* GALLERY */
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 15px;
+.gallery{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
 }
 
-.gallery img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 10px;
+.gallery img{
+  width:100%;
+  height: 220px;
+  object-fit:cover;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  cursor: zoom-in;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.gallery img:hover{
+  transform: translateY(-2px);
+  opacity: 0.96;
 }
 
 /* DESCRIPTION */
-h1 {
-    font-size: 32px;
-    margin-bottom: 10px;
+p{
+  line-height: 1.75;
+  color: var(--text);
+  margin: 0 0 14px 0;
 }
 
-.price {
-    font-size: 22px;
-    color: #b8860b;
-    margin-bottom: 30px;
+/* LIGHTBOX */
+.lightbox{
+  display:none;
+  position:fixed;
+  inset:0;
+  background: rgba(0,0,0,0.92);
+  z-index: 999;
+  justify-content:center;
+  align-items:center;
+  padding: 18px;
+  cursor: zoom-out;
 }
 
-p {
-    line-height: 1.6;
-    margin-bottom: 15px;
+.lightbox img{
+  max-width: 92%;
+  max-height: 92%;
+  border-radius: 12px;
+  border: 1px solid #2a2a2a;
+  box-shadow: 0 18px 60px rgba(0,0,0,0.55);
 }
 
+/* Close hint */
+.lightbox-hint{
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  user-select: none;
+}
 </style>
 </head>
 
@@ -69,35 +133,68 @@ p {
 
 <div class="container">
 
-    <h1>4 ½ entièrement rénové – Montréal-Nord</h1>
-    <div class="price">1 650 $ / mois</div>
+  <h1>4 ½ entièrement rénové – Montréal-Nord</h1>
+  <div class="price">1 650 $ / mois</div>
 
-    <h2>Galerie Photo</h2>
-    <div class="gallery">
-        <img src="photo1.jpg">
-        <img src="photo2.jpg">
-        <img src="photo3.jpg">
-        <img src="photo4.jpg">
-    </div>
+  <h2>Galerie Photo</h2>
+  <div class="gallery">
+      <img src="photo1.jpg" class="zoomable" alt="Photo 1">
+      <img src="photo2.jpg" class="zoomable" alt="Photo 2">
+      <img src="photo3.jpg" class="zoomable" alt="Photo 3">
+      <img src="photo4.jpg" class="zoomable" alt="Photo 4">
+  </div>
 
-    <h2>Description</h2>
-    <p>
-        Découvrez un superbe appartement 4 ½ entièrement rénové, situé dans un secteur calme et résidentiel
-        de Montréal-Nord. Cet espace moderne et lumineux est parfait pour un couple, une petite famille ou des 
-        professionnels à la recherche d’un logement impeccable et confortable.
-    </p>
-    
-    <p>
-        L’unité offre deux grandes chambres, une cuisine neuve au design contemporain avec comptoirs en quartz, 
-        un salon lumineux, une salle de bain entièrement refaite et des planchers modernes dans l’ensemble de l’appartement.
-    </p>
+  <h2>Description</h2>
+  <p>
+      Découvrez un superbe appartement 4 ½ entièrement rénové, situé dans un secteur calme et résidentiel
+      de Montréal-Nord. Cet espace moderne et lumineux est parfait pour un couple, une petite famille ou des
+      professionnels à la recherche d’un logement impeccable et confortable.
+  </p>
 
-    <p>
-        Proche des services, écoles, parcs, épiceries et transport en commun — un emplacement idéal combiné à 
-        une rénovation complète pour un confort optimal.
-    </p>
+  <p>
+      L’unité offre deux grandes chambres, une cuisine neuve au design contemporain avec comptoirs en quartz,
+      un salon lumineux, une salle de bain entièrement refaite et des planchers modernes dans l’ensemble de l’appartement.
+  </p>
+
+  <p>
+      Proche des services, écoles, parcs, épiceries et transport en commun — un emplacement idéal combiné à
+      une rénovation complète pour un confort optimal.
+  </p>
 
 </div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <img id="lightbox-img" src="" alt="Agrandissement">
+  <div class="lightbox-hint">Clique n’importe où pour fermer · ESC</div>
+</div>
+
+<script>
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+document.querySelectorAll(".zoomable").forEach(img => {
+  img.addEventListener("click", () => {
+    lightboxImg.src = img.src;
+    lightbox.style.display = "flex";
+    lightbox.setAttribute("aria-hidden", "false");
+  });
+});
+
+function closeLightbox(){
+  lightbox.style.display = "none";
+  lightbox.setAttribute("aria-hidden", "true");
+  lightboxImg.src = "";
+}
+
+lightbox.addEventListener("click", closeLightbox);
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && lightbox.style.display === "flex") {
+    closeLightbox();
+  }
+});
+</script>
 
 </body>
 </html>
