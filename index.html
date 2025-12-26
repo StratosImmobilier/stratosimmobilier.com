@@ -5,6 +5,7 @@
     <title>Stratos Immobilier | Locations résidentielles & espaces locatifs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Stratos Immobilier – Appartements, locations courte durée, espaces d’entreposage et garages.">
+
     <style>
         :root {
             --primary: #ffffff;
@@ -47,9 +48,10 @@
             padding: 1rem 0;
             max-width: 1180px;
             margin: auto;
+            gap: 1rem;
         }
 
-        .brand { display: flex; gap: 0.6rem; align-items: center; }
+        .brand { display: flex; gap: 0.6rem; align-items: center; padding: 0 1rem; }
         .brand-mark {
             background: white;
             color: black;
@@ -59,29 +61,22 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex: 0 0 auto;
         }
         .brand-name {
             font-size: 1.25rem;
             font-weight: 700;
             text-transform: uppercase;
+            line-height: 1.1;
         }
         .brand-tagline {
             font-size: 0.7rem;
             text-transform: uppercase;
             color: var(--text-muted);
+            line-height: 1.1;
         }
 
-        nav { display: flex; gap: 2rem; align-items: center; }
-
-        .nav-links {
-            display: flex;
-            gap: 1.4rem;
-            text-transform: uppercase;
-            font-size: 0.78rem;
-        }
-
-        .nav-link { opacity: 0.8; }
-        .nav-link:hover { opacity: 1; }
+        nav { display: flex; gap: 0.75rem; align-items: center; padding: 0 1rem; }
 
         .btn-whatsapp {
             background: #25D366;
@@ -89,7 +84,21 @@
             border-radius: 999px;
             font-weight: 600;
             color: black;
+            border: 1px solid rgba(0,0,0,0.15);
+            white-space: nowrap;
         }
+
+        .btn-email {
+            background: #ffffff;
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            font-weight: 600;
+            color: black;
+            border: 1px solid #ddd;
+            white-space: nowrap;
+        }
+
+        .btn-email:hover { background: #f2f2f2; }
 
         /* HERO FULL WIDTH */
         .hero {
@@ -114,6 +123,7 @@
             z-index: 2;
             max-width: 540px;
             margin-left: 2rem;
+            padding-right: 1rem;
         }
 
         .hero-title {
@@ -129,12 +139,13 @@
             font-size: 1.05rem;
         }
 
-        .hero-actions { margin-top: 2rem; display:flex; gap:1rem; }
+        .hero-actions { margin-top: 2rem; display:flex; gap:1rem; flex-wrap: wrap; }
 
         .btn-outline {
             border:1px solid #fff;
             padding:0.6rem 1.2rem;
             border-radius:999px;
+            display: inline-block;
         }
 
         /* TABS WRAPPER */
@@ -149,6 +160,7 @@
             gap:1rem;
             border-bottom:1px solid #222;
             padding-bottom:1rem;
+            flex-wrap: wrap;
         }
 
         .tab {
@@ -182,6 +194,30 @@
             border-radius:12px;
         }
 
+        .card a { opacity: 0.9; }
+        .card a:hover { opacity: 1; text-decoration: underline; }
+
+        /* MAP */
+        .map-section {
+            max-width: 1180px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+        }
+
+        .map-card {
+            border: 1px solid #222;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--card-bg);
+        }
+
+        .map-embed {
+            width: 100%;
+            height: 420px;
+            border: 0;
+            display: block;
+        }
+
         /* CONTACT SECTION */
         #contact {
             max-width:1180px;
@@ -200,6 +236,14 @@
             color:#888;
             font-size:0.8rem;
         }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .header-inner { padding: 0.9rem 0; }
+            .hero-content { margin-left: 1rem; }
+            .hero-title { font-size: 2.2rem; }
+            .cards-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 
@@ -208,22 +252,18 @@
 
 <header class="site-header">
     <div class="header-inner">
-        <a href="#" class="brand">
+        <a href="index.html" class="brand">
             <div class="brand-mark">SI</div>
             <div>
                 <div class="brand-name">Stratos Immobilier</div>
                 <div class="brand-tagline">Locations & gestion immobilière</div>
             </div>
-<nav>
-    <a href="https://wa.me/15149921958" class="btn-whatsapp" target="_blank">
-        WhatsApp
-    </a>
+        </a>
 
-    <a href="mailto:stratosimmobilier@hotmail.com" class="btn-email">
-        Courriel
-    </a>
-</nav>
-            
+        <nav>
+            <a href="https://wa.me/15149921958" class="btn-whatsapp" target="_blank" rel="noopener">WhatsApp</a>
+            <a href="mailto:stratosimmobilier@hotmail.com" class="btn-email">Courriel</a>
+        </nav>
     </div>
 </header>
 
@@ -234,7 +274,7 @@
         <p class="hero-sub">Appartements, courte durée, entreposage et garages — tout centralisé.</p>
 
         <div class="hero-actions">
-           <a href="logements.html" class="btn-outline">Voir les logements</a>
+            <a href="logements.html" class="btn-outline">Voir les logements</a>
             <a href="#contact" class="btn-outline">Contact</a>
         </div>
     </div>
@@ -252,54 +292,71 @@
     <!-- ONGLET APPARTEMENTS -->
     <div id="tab-appartements" class="tab-content active">
         <div class="cards-grid">
-
             <div class="card">
                 <h3>Appartement 1</h3>
                 <p>Unité résidentielle disponible.</p>
                 <a href="appartement1.html">Voir l’appartement →</a>
             </div>
-
         </div>
     </div>
 
     <!-- ONGLET COURTE DURÉE -->
     <div id="tab-courte" class="tab-content">
         <div class="cards-grid">
-
             <div class="card">
                 <h3>Logement meublé</h3>
                 <p>Location à la nuit, semaine ou mois.</p>
                 <a href="#">Voir plus →</a>
             </div>
-
         </div>
     </div>
 
     <!-- ONGLET ENTREPOSAGE -->
     <div id="tab-entreposage" class="tab-content">
         <div class="cards-grid">
-
             <div class="card">
                 <h3>Locker / rangement</h3>
                 <p>Espace sécuritaire d’entreposage.</p>
                 <a href="#">Voir plus →</a>
             </div>
-
         </div>
     </div>
 
     <!-- ONGLET GARAGES -->
     <div id="tab-garages" class="tab-content">
         <div class="cards-grid">
-
             <div class="card">
                 <h3>Garage privé</h3>
                 <p>Stationnement intérieur ou extérieur.</p>
                 <a href="#">Voir plus →</a>
             </div>
-
         </div>
     </div>
+</section>
+
+<!-- MAP -->
+<section id="map" class="map-section">
+    <h2 style="text-transform:uppercase;margin-bottom:1rem;">Localisation</h2>
+
+    <div class="map-card">
+        <iframe
+            class="map-embed"
+            src="https://www.google.com/maps?q=45.596417,-73.638500&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <p style="color:#b5b5b5;margin-top:0.75rem;">
+        <strong>11320 avenue Pelletier</strong>, Montréal-Nord
+    </p>
+
+    <p style="margin-top:0.5rem;">
+        <a href="https://www.google.com/maps?q=45.596417,-73.638500" target="_blank" rel="noopener" style="color:#fff;opacity:0.85;">
+            Ouvrir dans Google Maps →
+        </a>
+    </p>
 </section>
 
 <!-- CONTACT -->
@@ -310,33 +367,29 @@
     <p style="color:#b5b5b5;">Courriel : <a href="mailto:stratosimmobilier@hotmail.com">stratosimmobilier@hotmail.com</a></p>
 </section>
 
-<!-- CLEAN FOOTER WITHOUT DUPLICATE LINKS -->
 <footer>
     <div>© <span id="year"></span> Stratos Immobilier</div>
 </footer>
 
 <script>
-document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-const tabs = document.querySelectorAll('.tab');
-const contents = document.querySelectorAll('.tab-content');
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.tab-content');
 
-tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-        const target = tab.dataset.tab;
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const target = tab.dataset.tab;
 
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
 
-        contents.forEach(c => c.classList.remove('active'));
-        document.getElementById("tab-" + target).classList.add('active');
+            contents.forEach(c => c.classList.remove('active'));
+            document.getElementById("tab-" + target).classList.add('active');
+        });
     });
-});
 </script>
 
 </div>
 </body>
 </html>
-
-
-
