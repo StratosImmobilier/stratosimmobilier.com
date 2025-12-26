@@ -114,6 +114,28 @@ p{
   margin: 0 0 14px 0;
 }
 
+/* MAP */
+.map-section{
+  max-width:1100px;
+  margin: 3rem auto;
+  padding: 0 20px;
+}
+
+.map-card{
+  max-width: 900px;
+  margin: 0 auto;
+  border:1px solid var(--border);
+  border-radius:12px;
+  overflow:hidden;
+}
+
+.map-embed{
+  width:100%;
+  height:420px;
+  border:0;
+  display:block;
+}
+
 /* LIGHTBOX */
 .lightbox{
   display:none;
@@ -158,7 +180,6 @@ p{
   <h1>4 ½ entièrement rénové – Montréal-Nord</h1>
   <div class="price">1 650 $ / mois</div>
 
-  <h2>Galerie photo</h2>
   <div class="gallery">
       <img src="photo1.jpg" class="zoomable" alt="Salon">
       <img src="photo2.jpg" class="zoomable" alt="Cuisine">
@@ -166,40 +187,51 @@ p{
       <img src="photo4.jpg" class="zoomable" alt="Salle de bain">
   </div>
 
-  <!-- VIDEO APPARTEMENT 1 -->
   <h2>Vidéo</h2>
   <div class="video-wrapper">
     <iframe
       src="https://www.youtube.com/embed/Dj9scFqa9Ss"
       title="Visite vidéo – Appartement 4 ½ Montréal-Nord"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen>
     </iframe>
   </div>
 
   <h2>Description</h2>
-  <p>
-    Découvrez un superbe appartement 4 ½ entièrement rénové, situé dans un secteur calme et résidentiel
-    de Montréal-Nord. Cet espace moderne et lumineux est parfait pour un couple, une petite famille ou des
-    professionnels à la recherche d’un logement impeccable et confortable.
-  </p>
-
-  <p>
-    L’unité offre deux grandes chambres, une cuisine neuve au design contemporain avec comptoirs en quartz,
-    un salon lumineux, une salle de bain entièrement refaite et des planchers modernes dans l’ensemble de
-    l’appartement.
-  </p>
-
-  <p>
-    Proche des services, écoles, parcs, épiceries et transport en commun — un emplacement idéal combiné à
-    une rénovation complète pour un confort optimal.
-  </p>
+  <p>Découvrez un superbe appartement 4 ½ entièrement rénové...</p>
+  <p>L’unité offre deux grandes chambres...</p>
+  <p>Proche des services, écoles, parcs...</p>
 
 </div>
 
+<!-- LOCALISATION APPARTEMENT -->
+<section class="map-section">
+  <h2>Localisation</h2>
+
+  <div class="map-card">
+    <iframe
+      class="map-embed"
+      src="https://www.google.com/maps?q=45.596417,-73.638500&output=embed"
+      loading="lazy"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <p style="color:#b5b5b5;margin-top:0.75rem;text-align:center;">
+    <strong>11320 avenue Pelletier</strong>, Montréal-Nord
+  </p>
+
+  <p style="margin-top:0.5rem;text-align:center;">
+    <a href="https://www.google.com/maps?q=45.596417,-73.638500"
+       target="_blank"
+       style="color:#fff;opacity:0.85;">
+       Ouvrir dans Google Maps →
+    </a>
+  </p>
+</section>
+
 <!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" aria-hidden="true">
-  <img id="lightbox-img" src="" alt="Agrandissement">
+<div class="lightbox" id="lightbox">
+  <img id="lightbox-img" src="">
   <div class="lightbox-hint">Clique n’importe où pour fermer · ESC</div>
 </div>
 
@@ -207,57 +239,18 @@ p{
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
 
-document.querySelectorAll(".zoomable").forEach(img => {
-  img.addEventListener("click", () => {
-    lightboxImg.src = img.src;
-    lightbox.style.display = "flex";
-    lightbox.setAttribute("aria-hidden", "false");
+document.querySelectorAll(".zoomable").forEach(img=>{
+  img.addEventListener("click",()=>{
+    lightboxImg.src=img.src;
+    lightbox.style.display="flex";
   });
 });
 
-function closeLightbox(){
-  lightbox.style.display = "none";
-  lightbox.setAttribute("aria-hidden", "true");
-  lightboxImg.src = "";
-}
-
-lightbox.addEventListener("click", closeLightbox);
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && lightbox.style.display === "flex") {
-    closeLightbox();
-  }
+lightbox.addEventListener("click",()=>{
+  lightbox.style.display="none";
+  lightboxImg.src="";
 });
 </script>
 
 </body>
 </html>
-
-
-<!-- LOCALISATION APPARTEMENT -->
-<section class="map-section">
-    <h2>Localisation</h2>
-
-    <div class="map-card">
-        <iframe
-            class="map-embed"
-            src="https://www.google.com/maps?q=45.596417,-73.638500&output=embed"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            allowfullscreen>
-        </iframe>
-    </div>
-
-    <p style="color:#b5b5b5;margin-top:0.75rem;">
-        <strong>11320 avenue Pelletier</strong>, Montréal-Nord
-    </p>
-
-    <p style="margin-top:0.5rem;">
-        <a href="https://www.google.com/maps?q=45.596417,-73.638500"
-           target="_blank"
-           rel="noopener"
-           style="color:#fff;opacity:0.85;">
-           Ouvrir dans Google Maps →
-        </a>
-    </p>
-</section>
